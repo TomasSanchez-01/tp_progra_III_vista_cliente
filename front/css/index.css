@@ -12,7 +12,7 @@
     max-width: 420px;
     margin-inline: auto;
     padding: 24px;
-    background: var(--blanco);
+    background: var(--superficie);
     border: 3px solid var(--club);
     border-radius: 10px;
     box-shadow: 0 4px 0 var(--granate);
@@ -28,9 +28,9 @@
     padding: 11px 16px;
     border: 2px solid var(--celeste);
     border-radius: 6px;
-    background: var(--papel);
+    background: var(--fondo);
     font: inherit;
-    color: var(--negro);
+    color: var(--texto);
 }
 
 
