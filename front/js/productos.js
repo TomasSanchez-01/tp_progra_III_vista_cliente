@@ -5,6 +5,8 @@ const urlBase = "http://localhost:3000";
 const buscador = document.getElementById("buscador");
 const contadorCarrito = document.getElementById("contador-carrito");
 const aviso = document.getElementById("aviso");
+const btnCarrito = document.getElementById("btn-carrito");
+
 let temporizadorAviso;
 let productos = [];
 let carrito = [];
@@ -129,8 +131,8 @@ buscador.addEventListener("keyup", () => {
     let productosFiltrados = productos.filter(p => p.name.toLowerCase().includes(palabraBuscada));
     renderizarProductos(productosFiltrados);
 });   
-    
-document.getElementById("btn-carrito").addEventListener("click", () => {
+
+btnCarrito.addEventListener("click", () => {
     window.location.href = "carrito.html";
     }
 );

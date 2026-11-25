@@ -18,7 +18,6 @@
     background: var(--blanco);
     border: 3px solid var(--club);
     border-radius: 10px;
-    box-shadow: 0 4px 0 var(--granate);
 }
 
 .ticket-encabezado {
