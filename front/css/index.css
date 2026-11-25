@@ -1,0 +1,39 @@
+/* bienvenida.css se carga DESPUÉS de clientes.css (header, main, footer, colores y botones) */
+
+.form-bienvenida {
+    --club: var(--celeste);
+    --club-claro: #dfedf8;
+    --club-texto: #2f6a9a;
+    --sobre-club: var(--negro);
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 420px;
+    margin-inline: auto;
+    padding: 24px;
+    background: var(--blanco);
+    border: 3px solid var(--club);
+    border-radius: 10px;
+    box-shadow: 0 4px 0 var(--granate);
+}
+
+.form-bienvenida label {
+    font-family: var(--fuente-titulos);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.form-bienvenida input {
+    padding: 11px 16px;
+    border: 2px solid var(--celeste);
+    border-radius: 6px;
+    background: var(--papel);
+    font: inherit;
+    color: var(--negro);
+}
+
+
+#mensaje-error {
+    color: var(--granate);
+}

@@ -1,0 +1,108 @@
+/* ticket.css se carga DESPUÉS de clientes.css (header, main, footer, colores y botones) */
+
+/* Colores del club por defecto (celeste), para poder usar .precio y .btn-carrito */
+.ticket,
+.ticket-botones {
+    --club: var(--celeste);
+    --club-claro: #dfedf8;
+    --club-texto: #2f6a9a;
+    --sobre-club: var(--negro);
+}
+
+
+/* ---------- Ticket ---------- */
+.ticket {
+    max-width: 640px;
+    margin-inline: auto;
+    padding: 24px;
+    background: var(--blanco);
+    border: 3px solid var(--club);
+    border-radius: 10px;
+    box-shadow: 0 4px 0 var(--granate);
+}
+
+.ticket-encabezado {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 2px dashed var(--club);
+    text-align: center;
+}
+
+.ticket-encabezado h4 {
+    font-family: var(--fuente-titulos);
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.ticket-encabezado p {
+    color: var(--gris);
+}
+
+.ticket-encabezado strong {
+    color: var(--negro);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 8px 4px;
+    border-bottom: 1px solid var(--papel);
+    text-align: right;
+}
+
+th:first-child,
+td:first-child {
+    text-align: left;
+}
+
+th {
+    font-family: var(--fuente-titulos);
+    font-size: 18px;
+    color: var(--gris);
+}
+
+.ticket-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 2px dashed var(--club);
+    font-family: var(--fuente-titulos);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.ticket-total .precio {
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 32px;
+}
+
+.ticket-gracias {
+    margin-top: 16px;
+    text-align: center;
+    color: var(--gris);
+}
+
+.ticket-vacio {
+    text-align: center;
+}
+
+
+/* ---------- Botones ---------- */
+.ticket-botones {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.ticket-botones button {
+    min-width: 180px;
+    margin-top: 0;
+}

@@ -10,12 +10,14 @@
 </head>
 <body>
     <header>
-        <div>
+        <a href="productos.html">
             <img id="logo" src="../img/imagen_simple.png" alt="logo" width="80px">
-        </div>
-        <h1>Manto sagrado</h1>
-        <input type="text" placeholder="buscar..." id="buscador">
-        <button id="btn-admin">Administrador</button>
+            <h1>Manto sagrado</h1>
+        </a>
+        
+        <input type="text" placeholder="Buscar..." id="buscador">
+        <a href="carrito.html" class="btn-header">🛒 Carrito <span id="contador-carrito">0</span></a>
+
     </header>
     
     <main>
@@ -29,5 +31,7 @@
             <li>Tomas Sanchez</li>
         </ul>
     </footer>
+
+    <p id="aviso" hidden></p>
 </body>
 </html>

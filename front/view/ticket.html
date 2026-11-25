@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket - Manto Sagrado</title>
+    <link rel="icon" type="image/x-icon" href="../img/favicon.png">
+    <link rel="stylesheet" href="../css/clientes.css">
+    <link rel="stylesheet" href="../css/ticket.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script defer src="../js/ticket.js"></script>
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img id="logo" src="../img/imagen_simple.png" alt="logo" width="80px">
+            <h1>Manto sagrado</h1>
+        </a>
+    </header>
+
+    <main>
+        <h3 class="titulo-pagina">Ticket de compra</h3>
+
+        <section id="ticket" class="ticket">
+            <div class="ticket-encabezado">
+                <h4>Manto sagrado</h4>
+                <p>Cliente: <strong id="ticket-cliente">-</strong></p>
+                <p>Fecha: <span id="ticket-fecha">-</span></p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cant.</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="ticket-productos"></tbody>
+            </table>
+
+            <p class="ticket-total">
+                <span>Total</span>
+                <span id="ticket-total" class="precio">$ 0</span>
+            </p>
+
+            <p class="ticket-gracias">¡Gracias por tu compra!</p>
+        </section>
+
+        <p id="ticket-vacio" class="ticket-vacio" hidden>
+            No hay ningún ticket para mostrar. <a href="productos.html">Ir a productos</a>
+        </p>
+
+        <div class="ticket-botones">
+            <button type="button" id="btn-pdf" class="btn-carrito">Descargar PDF</button>
+            <button type="button" id="btn-salir" class="btn-header">Salir</button>
+        </div>
+    </main>
+
+    <footer>
+        <ul>
+            <li>Lautaro Caneda</li>
+            <li>Tomas Sanchez</li>
+        </ul>
+    </footer>
+</body>
+</html>

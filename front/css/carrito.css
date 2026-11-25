@@ -1,0 +1,234 @@
+/* carrito.css se carga DESPUÉS de clientes.css.
+   clientes.css ya trae el header, main, footer, los colores y las variables de cada club
+   (.racing / .san_lorenzo). Acá solo va lo propio del carrito. */
+
+
+/* ---------- 1. Color por defecto ---------- */
+/* Es el celeste de Racing. Si el producto trae team (.racing, .san_lorenzo),
+   clientes.css lo pisa, porque esa regla es más específica. */
+.card-producto,
+.resumen,
+dialog {
+    --club: var(--celeste);
+    --club-claro: #dfedf8;
+    --club-texto: #2f6a9a;
+    --sobre-club: var(--negro);
+}
+
+
+/* ---------- 2. Estructura de la pantalla ---------- */
+.titulo-pagina {
+    margin-bottom: 12px;
+}
+
+.cliente {
+    margin-bottom: 24px;
+    color: var(--gris);
+}
+
+.cliente strong {
+    color: var(--negro);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+    align-items: start;
+}
+
+#lista-carrito {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+/* ---------- 3. Productos del carrito ---------- */
+/* Es la misma .card-producto del index, pero acostada (en fila) */
+#lista-carrito .card-producto {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+#lista-carrito .card-img {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 0;
+    object-fit: contain;
+}
+
+.item-info {
+    flex: 1 1 200px;
+}
+
+#lista-carrito .precio {
+    margin-top: 0;
+    padding-top: 0;
+    min-width: 110px;
+    text-align: right;
+}
+
+#lista-carrito .btn-carrito {
+    margin-top: 0;
+}
+
+.cantidad {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cantidad-valor {
+    min-width: 28px;
+    text-align: center;
+    font-family: var(--fuente-titulos);
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.btn-cant {
+    width: 40px;
+    padding: 6px 0;
+    font-size: 22px;
+}
+
+/* El botón Eliminar siempre es granate, sea cual sea el club */
+.btn-eliminar {
+    --club: var(--granate);
+    --club-texto: var(--granate);
+    --sobre-club: var(--blanco);
+}
+
+.btn-carrito:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.btn-carrito:disabled:hover {
+    background: var(--club);
+    color: var(--sobre-club);
+}
+
+
+/* ---------- 4. Carrito vacío ---------- */
+#carrito-vacio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 48px 24px;
+    background: var(--blanco);
+    border: 3px dashed var(--celeste);
+    border-radius: 10px;
+    font-family: var(--fuente-titulos);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#carrito-vacio[hidden] {
+    display: none;
+}
+
+
+/* ---------- 5. Resumen ---------- */
+.resumen {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+    background: var(--blanco);
+    border: 3px solid var(--club);
+    border-radius: 10px;
+}
+
+.resumen h4,
+dialog h4 {
+    font-family: var(--fuente-titulos);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: var(--gris);
+}
+
+.fila-total {
+    padding-top: 12px;
+    border-top: 2px solid var(--papel);
+    color: var(--negro);
+}
+
+.resumen .precio {
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 32px;
+}
+
+#btn-vaciar {
+    padding: 8px;
+    border: none;
+    background: transparent;
+    color: var(--granate);
+    font-family: var(--fuente-titulos);
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#btn-vaciar[hidden] {
+    display: none;
+}
+
+
+/* ---------- 6. Modal de confirmación ---------- */
+dialog {
+    width: calc(100% - 40px);
+    max-width: 420px;
+    margin: auto;
+    padding: 24px;
+    background: var(--blanco);
+    color: var(--negro);
+    border: 3px solid var(--club);
+    border-radius: 10px;
+}
+
+dialog::backdrop {
+    background: rgba(22, 22, 22, 0.6);
+}
+
+dialog h4 {
+    margin-bottom: 10px;
+}
+
+.modal-acciones {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.modal-acciones button {
+    flex: 1;
+}
+
+.modal-acciones .btn-carrito {
+    margin-top: 0;
+}
+
+
+/* ---------- 7. Responsive ---------- */
+@media (max-width: 800px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    #lista-carrito .precio {
+        text-align: left;
+    }
+}

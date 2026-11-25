@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Manto Sagrado</title>
+    <link rel="icon" type="image/x-icon" href="../img/favicon.png">
+    <link rel="stylesheet" href="../css/clientes.css">
+    <link rel="stylesheet" href="../css/carrito.css">
+    <script defer src="../js/carrito.js"></script>
+</head>
+<body>
+    <header>
+        <a href="productos.html">
+            <img id="logo" src="../img/imagen_simple.png" alt="logo" width="80px">
+            <h1>Manto sagrado</h1>
+        </a>
+
+        <a href="productos.html" class="btn-header">Seguir comprando</a>
+    </header>
+
+    <main>
+        <h3 class="titulo-pagina">Carrito</h3>
+        <p class="cliente">Cliente: <strong id="nombre-cliente">-</strong></p>
+
+        <div class="layout">
+            <section>
+                <div id="carrito-vacio" hidden>
+                    <p>No hay productos en el carrito</p>
+                    <a href="productos.html" class="btn-header">Ver productos</a>
+                </div>
+
+                <div id="lista-carrito"></div>
+            </section>
+
+            <aside class="resumen">
+                <h4>Resumen</h4>
+
+                <div class="fila">
+                    <span>Productos</span>
+                    <span id="resumen-unidades">0</span>
+                </div>
+
+                <div class="fila fila-total">
+                    <span>Total</span>
+                    <span id="precio-total" class="precio">$ 0</span>
+                </div>
+
+                <button type="button" id="btn-finalizar" class="btn-carrito">Finalizar compra</button>
+                <button type="button" id="btn-vaciar">Vaciar carrito</button>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <ul>
+            <li>Lautaro Caneda</li>
+            <li>Tomas Sanchez</li>
+        </ul>
+    </footer>
+
+    <dialog id="modal-confirmar">
+        <h4>¿Confirmar la compra?</h4>
+        <p>Vas a pagar <strong id="modal-total">$ 0</strong> por <span id="modal-unidades">0</span> productos.</p>
+        <div class="modal-acciones">
+            <button type="button" id="btn-cancelar" class="btn-header">Cancelar</button>
+            <button type="button" id="btn-confirmar" class="btn-carrito">Confirmar compra</button>
+        </div>
+    </dialog>
+</body>
+</html>
