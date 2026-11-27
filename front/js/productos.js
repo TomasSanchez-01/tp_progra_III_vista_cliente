@@ -1,6 +1,6 @@
 
 const contenedorProductos = document.getElementById("contenedor-productos");
-const urlBase = "http://localhost:3000";
+const urlBase = "http://localhost:4000";
 
 const buscador = document.getElementById("buscador");
 const contadorCarrito = document.getElementById("contador-carrito");
@@ -68,7 +68,7 @@ function renderizarProductos(array) {
     array.forEach(prod => {
         htmlProducto += `
         <div class="card-producto ${prod.team}">
-            <img class="card-img" src="../${prod.image}" alt="${prod.image}">
+            <img class="card-img" src="${urlBase}/${prod.image}" alt="${prod.image}">
             <h4>${prod.name}</h4>
             <p class="precio">$ ${prod.price}</p>
             <button onclick="agregarAlCarrito(${prod.id})" class="btn-carrito">Agregar al carrito</button>

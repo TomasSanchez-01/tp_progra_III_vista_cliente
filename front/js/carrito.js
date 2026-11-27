@@ -1,5 +1,5 @@
 // ---------- Elementos del HTML ----------
-const urlBase = "http://localhost:3000";
+const urlBase = "http://localhost:4000";
 const listaCarrito = document.getElementById("lista-carrito");
 const carritoVacio = document.getElementById("carrito-vacio");
 const precioTotal = document.getElementById("precio-total");
