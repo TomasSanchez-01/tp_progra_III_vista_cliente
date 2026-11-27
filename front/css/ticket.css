@@ -105,3 +105,19 @@ th {
     min-width: 180px;
     margin-top: 0;
 }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .ticket {
+        padding: 20px;
+    }
+
+    .ticket-encabezado h4 {
+        font-size: 28px;
+    }
+
+    /* Si los botones no entran en una fila, el último baja */
+    .ticket-botones {
+        flex-wrap: wrap;
+    }
+}

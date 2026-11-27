@@ -37,3 +37,19 @@
 #mensaje-error {
     color: var(--granate);
 }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+    .form-bienvenida {
+        padding: 16px;
+        box-shadow: 0 3px 0 var(--granate);
+    }
+
+    .form-bienvenida label {
+        font-size: 20px;
+    }
+
+    .form-bienvenida input {
+        padding: 10px 12px;
+    }
+}

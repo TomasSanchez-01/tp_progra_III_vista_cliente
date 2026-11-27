@@ -37,7 +37,7 @@ function mostrarCarrito() {
     carrito.forEach(p => {
         carritoProductos += `
             <div class="card-producto ${p.team}">
-                <img class="card-img" src="../${p.image}" alt="${p.name}">
+                <img class="card-img" src="${urlBase}/${p.image}" alt="${p.name}">
 
                 <div class="item-info">
                     <h4>${p.name}</h4>
@@ -126,47 +126,19 @@ btnCancelar.addEventListener("click", () => {
     modal.close();
 });
 
-btnConfirmar.addEventListener("click", async () => {
+btnConfirmar.addEventListener("click", () =>{
     const ticket = {
         cliente: localStorage.getItem("nombreCliente") || "",
         fecha: new Date().toISOString(),
         productos: carrito,
         total: calcularTotal()
     };
+    localStorage.setItem("ticket", JSON.stringify(ticket));
+    guardarCarritoLocalStorage();
+    carrito = [];
+    window.location.href = "ticket.html";
 
-    btnConfirmar.disabled = true; // evita guardar dos veces
-
-    try {
-        const response = await fetch(`${urlBase}/api/sales`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                user_name: ticket.cliente,
-                total_price: ticket.total,
-                products: carrito
-            })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.message);
-        }
-
-        ticket.id = data.id; // número de venta para el ticket
-        localStorage.setItem("ticket", JSON.stringify(ticket));
-
-        carrito = [];
-        guardarCarritoLocalStorage();
-        window.location.href = "ticket.html";
-
-    } catch (error) {
-        console.error(error);
-        alert("No se pudo registrar la compra");
-        btnConfirmar.disabled = false;
-    }
-});
-
+})
 
 const btnTema = document.getElementById("btn-tema");
 
