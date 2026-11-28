@@ -20,12 +20,10 @@ if (localStorage.getItem("carrito")) {
 }
 
 function init(){
-    //imprimirDatosAlumno(misDatos);
     obtenerProductos();
-    //mostrarCarrito();
+    actualizarContador();
 }
 init();
-
 
 // Optimizacion 1: Mostramos el mensaje de error visualmente
 function mostrarError(message) {
@@ -33,7 +31,6 @@ function mostrarError(message) {
         <p class="mensaje error">${message}</p>
     `;
 }
-
 
 async function obtenerProductos() {
     try {
@@ -69,10 +66,20 @@ function renderizarProductos(array) {
         htmlProducto += `
         <div class="card-producto ${prod.team}">
             <img class="card-img" src="${urlBase}/${prod.image}" alt="${prod.image}">
-            <h4>${prod.name}</h4>
-            <p class="precio">$ ${prod.price}</p>
-            <button onclick="agregarAlCarrito(${prod.id})" class="btn-carrito">Agregar al carrito</button>
+            <div class="contenedor-info-cards">
+                <h4>${prod.name}</h4>
+                <div class="contenedor-cantidad">
+                    <span class="precio">$ ${prod.price}</span>
+                    <div class="cantidad">
+                        <button onclick="quitarDelCarrito(${prod.id})" class="btn-carrito btn-cant">-</button>
+                        <span class="cantidad-valor" id="cantidad-${prod.id}">${cantidadDe(prod.id)}</span>
+                        <button onclick="agregarAlCarrito(${prod.id})" class="btn-carrito btn-cant">+</button>
+                    </div>
+                </div>
+                <button onclick="agregarAlCarrito(${prod.id})" class="btn-carrito">Agregar al carrito</button>
+            </div>
         </div>
+        
         `;
     });
         
@@ -89,7 +96,7 @@ function agregarAlCarrito(id){
         carrito.push({
             id: producto.id,
             name: producto.name,
-            price: Number(producto.price),
+            price: parseInt(producto.price),
             image: producto.image,
             team: producto.team,
             cantidad: 1
@@ -98,6 +105,7 @@ function agregarAlCarrito(id){
 
     guardarCarritoLocalStorage();
     actualizarContador();
+    actualizarCantidadCard(id);
     mostrarAviso(producto.name);
 }
 
@@ -107,6 +115,39 @@ function actualizarContador(){
         cantidad += p.cantidad;
     });
     contadorCarrito.textContent = cantidad;
+}
+
+function cantidadDe(id) {
+    let productoEnCarrito = carrito.find(p => p.id === id);
+
+    if (productoEnCarrito) {
+        return productoEnCarrito.cantidad;
+    }
+    return 0;
+}
+
+function quitarDelCarrito(id) {
+    let indice = carrito.findIndex(p => p.id === id);
+
+    // Si no está en el carrito, no hay nada para quitar
+    if (indice === -1) {
+        return;
+    }
+
+    carrito[indice].cantidad--;
+
+    // Si quedó en 0, lo sacamos del carrito
+    if (carrito[indice].cantidad === 0) {
+        carrito.splice(indice, 1);
+    }
+
+    guardarCarritoLocalStorage();
+    actualizarContador();
+    actualizarCantidadCard(id);
+}
+
+function actualizarCantidadCard(id) {
+    document.getElementById(`cantidad-${id}`).textContent = cantidadDe(id);
 }
 
 function mostrarAviso(nombre){

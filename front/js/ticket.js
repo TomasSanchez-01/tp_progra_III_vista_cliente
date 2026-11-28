@@ -58,8 +58,17 @@ function mostrarTicket() {
 btnPdf.addEventListener("click", imprimirTicket);
 
 async function imprimirTicket() {
-    btnPdf.disabled = true; // evita registrar la venta dos veces
+     btnPdf.disabled = true; // evita registrar la venta dos veces
 
+    // Primero guardamos la venta
+    const guardada = await registrarVenta();
+
+    // Si falló, no hay ticket
+    if (!guardada) {
+        btnPdf.disabled = false;
+        return;
+    }
+    // Venta guardada: armamos el PDF
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
@@ -77,18 +86,20 @@ async function imprimirTicket() {
 
     y += 15;
     ticket.productos.forEach(p => {
-        doc.text(`${p.name} x${p.cantidad} - $${Number(p.price) * p.cantidad}`, 20, y);
+        doc.text(`${p.name} x${p.cantidad} - $${parseInt(p.price * p.cantidad)}`, 20, y);
         y += 10; // si no sumamos a y, todos los productos se pisan
     });
 
     y += 10;
     doc.setFontSize(18);
     doc.text(`Total: $${ticket.total}`, 20, y);
-
     doc.save(`ticket_${ticket.cliente}.pdf`);
 
-    // Al terminar de imprimir el ticket, registramos la venta
-    await registrarVenta();
+    // El autoservicio vuelve a empezar
+    localStorage.removeItem("ticket");
+    localStorage.removeItem("carrito");
+    localStorage.removeItem("nombreCliente");
+    window.location.href = "index.html";
 }
 
 async function registrarVenta() {
@@ -102,33 +113,27 @@ async function registrarVenta() {
                 products: ticket.productos
             })
         });
-
         const data = await response.json();
-
         if (!response.ok) {
             throw new Error(data.message);
         }
-
-        alert("Venta registrada");
-
-        // Venta registrada: el autoservicio vuelve a empezar
-        localStorage.removeItem("ticket");
-        localStorage.removeItem("carrito");
-        localStorage.removeItem("nombreCliente");
-        window.location.href = "index.html";
+        return true;
 
     } catch (error) {
         console.error(error);
         alert("No se pudo registrar la compra");
-        btnPdf.disabled = false; // que pueda reintentar
+        return false;
     }
 }
 
 //el autoservicio vuelve a empezar
 btnSalir.addEventListener("click", () => {
+    let seguro = confirm("Si salis sin imprimir el ticket, la compra se cancela. Queres salir?");
+    if (!seguro) {
+        return;
+    }
     localStorage.removeItem("ticket");
     localStorage.removeItem("carrito");
     localStorage.removeItem("nombreCliente");
-
     window.location.href = "index.html";
 });

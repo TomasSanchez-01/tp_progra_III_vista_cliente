@@ -254,17 +254,56 @@ footer li::marker {
 }
 
 .precio {
-    margin-top: auto;
-    padding-top: 8px;
     font-family: var(--fuente-titulos);
     font-size: 26px;
     font-weight: 700;
     color: var(--club-texto);
 }
 
+.contenedor-info-cards{
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.contenedor-cantidad{
+    margin-top: auto;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cantidad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-cant {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    font-size: 25px;
+    /* line-height: 1; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cantidad-valor {
+    min-width: 28px;
+    text-align: center;
+    font-family: var(--fuente-titulos);
+    font-size: 22px;
+    font-weight: 700;
+}
+
 /* Botón con los colores del club: usa la base de la sección 3 */
 .btn-carrito {
-    margin-top: 10px;
+    /* margin-bottom: 10px; */
     padding: 10px;
     border-color: var(--club);
     background: var(--club);
